@@ -1,8 +1,25 @@
 <div class="container">
   <h1 class="jumbotron text-center">ALL THE SNACKS</h1>
+  {{#each snacksIndex}}
   <div class="row">
-    <div class="col-lg-6 col-offset-3">
-      add stuff here
+    <div class="col-lg-2 col-offset-3">
+      <h1>IMAGE EVENTUALLY</h1>
+    </div>
+    <div class="col-lg-2">
+      <div class="table-responsive">
+        <table class="table">
+          <tr>
+            {{this.name}}
+          </tr>
+          <tr>
+            {{this.company}}
+          </tr>
+          <tr>
+            {{this.rating}}
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
+  {{/each}}
 </div>
