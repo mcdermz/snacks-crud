@@ -1,0 +1,47 @@
+<div class="container">
+  <form class="form-group" action="/snacks" method="POST">
+    <fieldset class="form-group">
+
+      <div class="form-group">
+        <label for="name">Snack name</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Snack name">
+      </div>
+
+      <div class="form-group">
+        <label for="company">Company</label>
+        <input type="text" class="form-control" id="company" name="company" placeholder="Company name">
+      </div>
+
+      <div class="form-group">
+        <label for="img-url">Snack image</label>
+        <input type="text" class="form-control" id="img-url" name="img_url" placeholder="Enter snack URL here">
+      </div>
+
+      <legend>Rating</legend>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" name="rating" id="rating1" value="1">
+          1
+        </label>
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" name="rating" id="rating2" value="2">
+          2
+        </label>
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" name="rating" id="rating3" value="3">
+          3
+        </label>
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" name="rating" id="rating4" value="4">
+          4
+        </label>
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" name="rating" id="rating5" value="5">
+          5
+        </label>
+      </div>
+
+    </fieldset>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>

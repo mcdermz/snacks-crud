@@ -5,7 +5,10 @@ const db = require('../../db/knex.js');
 
 /* GET snacks listing. */
 router.get('/', snacksIndex);
+
+router.get('/new', snacksForm);
 router.get('/:id', snacksShow);
+router.post('/', snacksCreate)
 
 function snacksIndex(req, res, next) {
   db('snacks')
@@ -20,9 +23,24 @@ function snacksShow(req, res, next) {
   .then(snack => {
     res.render('snacks/show', { snack })
   }).catch(err => {
-    console.error(err);
     next(err)
   })
 };
+
+function snacksForm (req, res, next) {
+  res.render('snacks/form');
+}
+
+function snacksCreate(req, res, next) {
+  const {name, company, img_url, rating} = req.body;
+  db('snacks')
+  .insert({name, company, img_url, rating}, 'id')
+  .then(resId => {
+    let id = resId[0];
+    res.redirect(`/snacks/${id}`)
+  }).catch(err => {
+    next(err)
+  })
+}
 
 module.exports = router;
