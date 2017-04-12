@@ -8,8 +8,8 @@ a {
 }
 
 img.index {
-  height: 125px;
-  width: auto;
+  width: 125px;
+  height: auto;
 }
 
 .row:not(:last-child) {
