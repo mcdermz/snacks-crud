@@ -4,8 +4,10 @@ var router = express.Router();
 
 
 /* GET snacks listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+router.get('/', snacksIndex);
+
+function snacksIndex(req, res, next) {
+  res.render('snacks/index');
+};
 
 module.exports = router;
