@@ -6,3 +6,20 @@ body {
 a {
   color: #00B7FF;
 }
+
+img.index {
+  height: 125px;
+  width: auto;
+}
+
+.row:not(:last-child) {
+    border-bottom: 1px solid #ccc;
+}
+
+.index .col-lg-7 {
+  margin-top: 1rem;
+}
+
+span.rating {
+  color: blue;
+}
