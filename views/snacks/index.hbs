@@ -3,22 +3,11 @@
   {{#each snacksIndex}}
   <div class="row">
     <div class="col-lg-2 col-offset-3">
-      <h1>IMAGE EVENTUALLY</h1>
+      <h4>IMAGE EVENTUALLY</h4>
     </div>
-    <div class="col-lg-2">
-      <div class="table-responsive">
-        <table class="table">
-          <tr>
-            {{this.name}}
-          </tr>
-          <tr>
-            {{this.company}}
-          </tr>
-          <tr>
-            {{this.rating}}
-          </tr>
-        </table>
-      </div>
+    <div class="col-lg-7">
+      <h4>{{ this.name }} <span class="rating">{{ this.rating }}</span></h4>
+      <p>{{ this.company }}</p>
     </div>
   </div>
   {{/each}}
