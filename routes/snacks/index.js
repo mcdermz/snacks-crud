@@ -40,6 +40,10 @@ function snacksCreate(req, res, next) {
   let newSnack = req.body.img_url ?
   {name, company, rating, img_url} : {name, company, rating};
 
+  if ([name, company, rating, img_url].some((el) => !el)) {
+    res.render('snacks/form', {name, company, img_url, rating, id, error: {message: 'One or more fields are not filled out'}, route: "/snacks"})
+  }
+
   db('snacks')
   .insert(newSnack, 'id')
   .then(resId => {
@@ -75,6 +79,9 @@ function snacksUpdate(req, res, next) {
   let id = req.params.id;
   const {name, company, rating, img_url} = req.body;
 
+  if ([name, company, rating, img_url].some((el) => !el)) {
+    res.render('snacks/form', {name, company, img_url, rating, id, error: {message: 'One or more fields are not filled out'}, route: "/snacks/" + id + "?_method=PUT"})
+  }
   db('snacks').where({ id })
   .update({name, company, rating, img_url}, 'id')
   .then(resId => {

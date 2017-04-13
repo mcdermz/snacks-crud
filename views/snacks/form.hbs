@@ -1,4 +1,11 @@
 <div class="container">
+  {{#if error}}
+  <div class="row">
+    <div class="col-lg-4 col-lg-offset-3 alert alert-danger text-center">
+      {{error.message}}
+    </div>
+  </div>
+  {{/if}}
   <form class="form-group" action={{route}} method="POST">
     <fieldset class="form-group">
       <div class="form-group">
@@ -16,8 +23,8 @@
         <input type="text" class="form-control" id="img-url" name="img_url" placeholder="Enter snack URL here" value={{img_url}}>
       </div>
 
-      <legend>Rating</legend>
       <div class="form-check">
+        <legend>Rating</legend>
         <label class="form-check-label">
           <input type="radio" class="form-check-input" name="rating" id="rating1" value="1">
           1
