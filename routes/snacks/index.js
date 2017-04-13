@@ -10,6 +10,8 @@ router.get('/new', snacksForm);
 router.get('/:id', snacksShow);
 router.post('/', snacksCreate);
 router.delete('/:id', snacksDelete);
+router.get('/:id/edit', snacksEditForm);
+router.put('/:id', snacksUpdate)
 
 function snacksIndex(req, res, next) {
   db('snacks')
@@ -29,7 +31,7 @@ function snacksShow(req, res, next) {
 };
 
 function snacksForm (req, res, next) {
-  res.render('snacks/form');
+  res.render('snacks/form', {route: "/snacks"});
 }
 
 function snacksCreate(req, res, next) {
@@ -51,8 +53,7 @@ function snacksCreate(req, res, next) {
 function snacksDelete(req, res, next) {
   const id = req.params.id;
 
-  db('snacks')
-  .del().where({ id })
+  db('snacks').del().where({ id })
   .then(() => {
     res.redirect('/snacks')
   }).catch(err => {
@@ -60,4 +61,28 @@ function snacksDelete(req, res, next) {
   });
 }
 
+function snacksEditForm(req, res, next) {
+  const id = req.params.id;
+
+  db('snacks').where({ id })
+  .then(snack => {
+    const {name, company, img_url, rating, id} = snack[0]
+    res.render('snacks/form', {name, company, img_url, rating, id, route: "/snacks/" + id + "?_method=PUT"})
+  })
+}
+
+function snacksUpdate(req, res, next) {
+  let id = req.params.id;
+  const {name, company, rating, img_url} = req.body;
+
+  db('snacks').where({ id })
+  .update({name, company, rating, img_url}, 'id')
+  .then(resId => {
+    id = resId[0];
+    res.redirect('/snacks/' + id);
+  }).catch(err => {
+    next(err);
+  });
+
+}
 module.exports = router;
