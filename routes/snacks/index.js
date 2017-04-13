@@ -8,7 +8,8 @@ router.get('/', snacksIndex);
 
 router.get('/new', snacksForm);
 router.get('/:id', snacksShow);
-router.post('/', snacksCreate)
+router.post('/', snacksCreate);
+router.delete('/:id', snacksDelete);
 
 function snacksIndex(req, res, next) {
   db('snacks')
@@ -45,6 +46,18 @@ function snacksCreate(req, res, next) {
   }).catch(err => {
     next(err)
   })
+}
+
+function snacksDelete(req, res, next) {
+  const id = req.params.id;
+
+  db('snacks')
+  .del().where({ id })
+  .then(() => {
+    res.redirect('/snacks')
+  }).catch(err => {
+    next(err);
+  });
 }
 
 module.exports = router;

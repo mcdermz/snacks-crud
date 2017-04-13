@@ -9,6 +9,9 @@
     <div class="col-lg-7">
       <h4>{{ this.name }} <span class="rating">{{ this.rating }}</span></h4>
       <p>{{ this.company }}</p>
+      <form class="delete" action="/snacks/{{this.id}}?_method=DELETE" method="POST">
+        <input type="submit" name="delete" value="Delete">
+      </form>
     </div>
   </div>
   {{/each}}
