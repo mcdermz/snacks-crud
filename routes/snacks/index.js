@@ -32,12 +32,16 @@ function snacksForm (req, res, next) {
 }
 
 function snacksCreate(req, res, next) {
-  const {name, company, img_url, rating} = req.body;
+  const {name, company, rating, img_url} = req.body;
+
+  let newSnack = req.body.img_url ?
+  {name, company, rating, img_url} : {name, company, rating};
+
   db('snacks')
-  .insert({name, company, img_url, rating}, 'id')
+  .insert(newSnack, 'id')
   .then(resId => {
     let id = resId[0];
-    res.redirect(`/snacks/${id}`)
+    res.redirect(`snacks/${id}`)
   }).catch(err => {
     next(err)
   })
