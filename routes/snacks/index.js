@@ -31,7 +31,7 @@ function snacksShow(req, res, next) {
 };
 
 function snacksForm (req, res, next) {
-  res.render('snacks/form', {route: "/snacks"});
+  res.render('snacks/form', {route: '/snacks'});
 }
 
 function snacksCreate(req, res, next) {
@@ -39,9 +39,11 @@ function snacksCreate(req, res, next) {
 
   let newSnack = req.body.img_url ?
   {name, company, rating, img_url} : {name, company, rating};
+  const error = {message: 'One or more fields are not filled out'};
+  const route = '/snacks';
 
-  if ([name, company, rating, img_url].some((el) => !el)) {
-    res.render('snacks/form', {name, company, img_url, rating, id, error: {message: 'One or more fields are not filled out'}, route: "/snacks"})
+  if ([name, company, rating].some((el) => !el)) {
+    res.render('snacks/form', { name, company, img_url, rating, error, route })
   }
 
   db('snacks')
@@ -81,7 +83,7 @@ function snacksUpdate(req, res, next) {
 
   if ([name, company, rating, img_url].some((el) => !el)) {
     var error = {message: 'One or more fields are not filled out'}
-    var route = "/snacks/" + id + "?_method=PUT"
+    var route = '/snacks/' + id + '?_method=PUT'
     var snack = { name, company, img_url, rating, id }
 
     res.render('snacks/form', { snack, error, route })
