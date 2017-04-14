@@ -80,8 +80,13 @@ function snacksUpdate(req, res, next) {
   const {name, company, rating, img_url} = req.body;
 
   if ([name, company, rating, img_url].some((el) => !el)) {
-    res.render('snacks/form', {name, company, img_url, rating, id, error: {message: 'One or more fields are not filled out'}, route: "/snacks/" + id + "?_method=PUT"})
+    var error = {message: 'One or more fields are not filled out'}
+    var route = "/snacks/" + id + "?_method=PUT"
+    var snack = { name, company, img_url, rating, id }
+
+    res.render('snacks/form', { snack, error, route })
   }
+
   db('snacks').where({ id })
   .update({name, company, rating, img_url}, 'id')
   .then(resId => {
